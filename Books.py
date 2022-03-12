@@ -1,11 +1,20 @@
+import json
+import pickle
+
+from JSONPersistence import BookPersistence
+
+
+
 class Book:
 
-    def __init__(self, title, author, isbn, genre, publisher):
+    def __init__(self, title, author, isbn, genre, publisher,inventoryNumber,state):
         self.__title = title
         self.__author = author
         self.__isbn = isbn
         self.__genre = genre
         self.__publisher = publisher
+        self.__inventoryNumber = inventoryNumber
+        self.__state = state
 
     @property
     def title(self):
@@ -47,9 +56,28 @@ class Book:
     def publisher(self, publisher):
         self.__publisher = publisher
 
-b1 = Book("a", "b", "c", "d", "e")
+    @property
+    def inventoryNumber(self):
+        return self.__inventoryNumber
 
-b1.title="abcsdcds"
-b1.isbn="twee"
+    @inventoryNumber.setter
+    def inventoryNumber(self, inventoryNumber):
+        self.__inventoryNumber = inventoryNumber
 
-print(b1.isbn)
+    @property
+    def state(self):
+        return self.__state
+
+    @state.setter
+    def publisher(self, state):
+        self.__state = state
+
+
+class BooksInventory:
+    pass
+    #def __init__(self):
+     #   self.__bookPersistance=
+      #  self.__bookList =
+
+
+
