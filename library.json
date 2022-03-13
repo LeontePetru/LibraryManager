@@ -1,0 +1,36 @@
+{
+  "_Book__title": "Amintiri din copilarie",
+  "_Book__author": "Ion Creanga",
+  "_Book__isbn": "928-008-123",
+  "_Book__genre": "Memorii",
+  "_Book__publisher": "P45",
+  "_Book__inventoryNumber": "12",
+  "_Book__state": "have"
+}
+{
+  "_Book__title": "Amintiri din copilarie24",
+  "_Book__author": "Ion Creanga24",
+  "_Book__isbn": "928-008-1234",
+  "_Book__genre": "Memorii24",
+  "_Book__publisher": "P4524",
+  "_Book__inventoryNumber": "3334",
+  "_Book__state": "borrowed4"
+}
+{
+  "_Book__title": "Amintiri din copilarie2",
+  "_Book__author": "Ion Creanga",
+  "_Book__isbn": "928-008-123",
+  "_Book__genre": "Memorii",
+  "_Book__publisher": "P452",
+  "_Book__inventoryNumber": "333",
+  "_Book__state": "borrowed"
+}
+{
+  "_Book__title": "Amintiri din copilarie52",
+  "_Book__author": "Ion Creanga",
+  "_Book__isbn": "928-008-1253",
+  "_Book__genre": "Memorii2",
+  "_Book__publisher": "P4552",
+  "_Book__inventoryNumber": "3533",
+  "_Book__state": "borrowed5"
+}
