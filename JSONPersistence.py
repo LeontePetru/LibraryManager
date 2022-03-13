@@ -93,9 +93,9 @@ class BookPersistence(JSONPersist):
 
 
 
-pers = BookPersistence("library.json")
+#pers = BookPersistence("library.json")
 
-#print(pers.searchByName("Amintiri din copilarie2124").__dict__)
+#print(pers.searchByName("Amintiri din copilarie").__dict__)
 #pers.deleteBook(333)
 #
 #pers.serializeList(library)

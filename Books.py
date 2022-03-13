@@ -1,8 +1,3 @@
-import json
-import pickle
-
-from JSONPersistence import BookPersistence
-
 
 
 class Book:
@@ -69,15 +64,9 @@ class Book:
         return self.__state
 
     @state.setter
-    def publisher(self, state):
+    def state(self, state):
         self.__state = state
 
-
-class BooksInventory:
-    pass
-    #def __init__(self):
-     #   self.__bookPersistance=
-      #  self.__bookList =
 
 
 
