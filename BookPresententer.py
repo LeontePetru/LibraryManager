@@ -141,4 +141,4 @@ pres=BookPresenter()
 #print(a.lower())
 
 
-print(pres.nameSortedListOfStrings('Amintiri din copilarie52'))
+#print(pres.nameSortedListOfStrings('Amintiri din copilarie52'))

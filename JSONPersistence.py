@@ -1,5 +1,6 @@
 import json
 from Books import Book
+from Users import LoggedUser
 
 class JSONPersist:
 
@@ -74,37 +75,42 @@ class BookPersistence(JSONPersist):
                 return bookList[i]
         return False
 
+class LoggedUserPersistance(JSONPersist):
+    def __init__(self,file):
+        super().__init__(file)
 
+    def read(self):
+        data = self.deserialize()
+        splitted = data.split('}')
+        n = splitted.__len__()
 
-            #print("object: {}".format(i))
-            #print(splitted[i])
-            #print("\n")
+        userList = []
 
+        for i in range(n - 1):
+            auxData = json.loads(splitted[i] + "}")
+            auxBook = LoggedUser(auxData['_LoggedUser__username'], auxData['_LoggedUser__password'], auxData['_LoggedUser__role'])
+            userList.append(auxBook);
 
-#b1 = Book("Amintiri din copilarie", "Ion Creanga", "928-008-123", "Memorii", "P45","12","have")
+        return userList
 
-#b2 = Book("Amintiri din copilarie2", "Ion Creanga2", "928-008-123", "Memorii2", "P452","333","borrowed")
+    def deleteBook(self, username):
+        userList = self.read()
+        newUserList = []
+        n = userList.__len__()
+        for i in range(n):
+            if userList[i].username != username:
+                newUserList.append(userList[i])
+        self.serializeList(newUserList)
+        return True
 
-#b3 = Book("Amintiri din copilarie24", "Ion Creanga24", "928-008-1234", "Memorii24", "P4524","3334","borrowed4")
+    def searchByUsername(self, username):
+        userList = self.read()
+        n = userList.__len__()
+        for i in range(n):
+            if (userList[i].username == username):
+                return userList[i]
+        return False
 
-#library = []
-#library.append(b1);
-#library.append(b2);
-
-
-
-#pers = BookPersistence("library.json")
-
-#print(pers.searchByName("Amintiri din copilarie").__dict__)
-#pers.deleteBook(333)
-#
-#pers.serializeList(library)
-#bookL=pers.read()
-
-#pers.saveBook(b2)
-#pers.saveBook(b3)
-
-#pers.deleteBook("333")
 
 
 

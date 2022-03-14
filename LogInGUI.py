@@ -1,7 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
 import tkinter.font as tkFont
+from JSONPersistence import LoggedUserPersistance
 import os
+from tkinter import messagebox as mb
 
 
 root = tk.Tk()
@@ -16,12 +18,21 @@ font = tkFont.Font(family="Times New Roman",size=16,weight="bold")
 userEntry=tk.Entry(bg="#cccccc",font=font)
 userEntry.place(relx=0.65,rely=0.525,relheight=0.06,relwidth=0.23)
 
-passwordEntry=tk.Entry(bg="#cccccc",font=font)
+passwordEntry=tk.Entry(bg="#cccccc",font=font,show='*')
 passwordEntry.place(relx=0.65,rely=0.68,relheight=0.06,relwidth=0.23)
 
 def buttonLogInFunc():
-    print(userEntry.get())
-    print(passwordEntry.get())
+    #print(userEntry.get())
+    #print(passwordEntry.get())
+    userPers=LoggedUserPersistance("users.json")
+    result=userPers.searchByUsername(userEntry.get())
+    if (result==False or result.password != passwordEntry.get()):
+        mb.showerror("LogIn","Wrong username password combination")
+    elif (result.role=="book keeper"):
+        root.quit()
+        os.system('BookKeeperGUI.py')
+
+
 
 def Guest():
     root.quit()
