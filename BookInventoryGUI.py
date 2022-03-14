@@ -8,9 +8,9 @@ import tkinter.font as tkFont
 #WIDTH = 1280
 #HEIGHT = 720
 
+
 root = tk.Tk()
 root.geometry('1280x720')
-
 background_image = tk.PhotoImage(file='.\Images\BookInventoryGUI.png')
 background_label = tk.Label(root, image=background_image)
 background_label.place(relwidth=1,relheight=1)
@@ -20,26 +20,20 @@ presenter= BookPresenter()
 bookData=presenter.stringOfBooks()
 n=bookData.__len__()
 
-genres = []
-genres.append("genre")
-states = []
-states.append("status")
-states.append("available")
-states.append("borrowed")
-publishers = []
-publishers.append("publisher")
-authors = []
-authors.append("author")
+genres = presenter.genres
+states = presenter.states
+publishers = presenter.publishers
+authors = presenter.authors
 
-for i in range(n):
-    if bookData[i][3] not in genres:
-        genres.append(bookData[i][3])
-    #if bookData[i][6] not in states:
-     #   states.append(bookData[i][6])
-    if bookData[i][4] not in publishers:
-        publishers.append(bookData[i][4])
-    if bookData[i][2] not in authors:
-        authors.append(bookData[i][1])
+        #for i in range(n):
+         #   if bookData[i][3] not in genres:
+          #      genres.append(bookData[i][3])
+            #if bookData[i][6] not in states:
+             #   states.append(bookData[i][6])
+           # if bookData[i][4] not in publishers:
+            #    publishers.append(bookData[i][4])
+            #if bookData[i][2] not in authors:
+             #   authors.append(bookData[i][1])
 
 font = tkFont.Font(family="Times New Roman",size=12,weight="bold")
 
@@ -63,7 +57,6 @@ selectStates['values'] = states
 selectStates.current(0)
 selectStates.place(relx=0.025,rely=0.38,relheight=0.04,relwidth=0.125)
 
-
 def sortButtonFunc():
     sortParameters =[]
     sortGenres=selectGenres.get()
@@ -74,15 +67,16 @@ def sortButtonFunc():
     sortParameters.append(sortPublishers)
     sortAuthors = selectAuthors.get()
     sortParameters.append(sortAuthors)
+    print(sortParameters)
     createTable(sortParameters)
     #canvas.update_idletasks()
-    
+
 sortButton=tk.Button(font=(12),text="Sort by",command=sortButtonFunc,foreground="#ff6366",bg="#cccccc")
 sortButton.place(relx=0.025,rely=0.44,relheight=0.04,relwidth=0.125)
 
 
-#for i in range(genres.__len__()):
- #   print(genres[i])
+        #for i in range(genres.__len__()):
+         #   print(genres[i])
 
 def createTable(sortStates):
     canvas = tk.Canvas(root)
@@ -91,7 +85,6 @@ def createTable(sortStates):
     tv = ttk.Treeview(canvas,selectmode='browse')
     vsb = ttk.Scrollbar(orient="vertical", command=tv.yview)
     tv.configure(yscrollcommand=vsb.set)
-
 
     tv['columns']=('number', 'title', 'author','isbn','genre','publisher','inventoryNumber','state')
 
@@ -115,17 +108,19 @@ def createTable(sortStates):
     tv.heading('state', text='Status', anchor=CENTER)
 
     index=-1
+    bookDataSorted=presenter.sortedListOfStrings(sortStates)
+    n1=bookDataSorted.__len__()
 
-    for i in range(n):
-        #for j in range(7):
+    for i in range(n1):
+                #for j in range(7):
 
-        if ((bookData[i][3]==sortStates[0] or sortStates[0]=='genre') and
-            (bookData[i][6]==sortStates[1] or sortStates[1]=='status') and
-            (bookData[i][4]==sortStates[2] or sortStates[2]=='publisher') and
-            (bookData[i][1]==sortStates[3] or sortStates[3]=='author')):
-                index = index + 1
-                tv.insert(parent='',index=index,iid=index,values=(index,bookData[i][0],bookData[i][1],bookData[i][2],
-                                                            bookData[i][3],bookData[i][4],bookData[i][5],bookData[i][6]))
+                #if ((bookData[i][3]==sortStates[0] or sortStates[0]=='genre') and
+                 #   (bookData[i][6]==sortStates[1] or sortStates[1]=='status') and
+                  #  (bookData[i][4]==sortStates[2] or sortStates[2]=='publisher') and
+                   # (bookData[i][1]==sortStates[3] or sortStates[3]=='author')):
+        index = index + 1
+        tv.insert(parent='',index=index,iid=index,values=(index,bookData[i][0],bookData[i][1],bookData[i][2],
+                                                                    bookData[i][3],bookData[i][4],bookData[i][5],bookData[i][6]))
 
     tv.pack()
 
@@ -137,3 +132,6 @@ unsortedParameters.append("author")
 createTable(unsortedParameters)
 
 root.mainloop()
+
+
+
