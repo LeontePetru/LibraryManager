@@ -136,9 +136,9 @@ pres=BookPresenter()
 #print(pres.states)
 #print(pres.authors)
 #print(pres.genres)
-a="sdsfsdSDDSDdsa"
+#a="sdsfsdSDDSDdsa"
 
-print(a.lower())
+#print(a.lower())
 
 
-print(pres.nameSortedListOfStrings('Amintiri din copilarie'))
+print(pres.nameSortedListOfStrings('Amintiri din copilarie52'))

@@ -57,6 +57,9 @@ selectStates['values'] = states
 selectStates.current(0)
 selectStates.place(relx=0.025,rely=0.38,relheight=0.04,relwidth=0.125)
 
+titleEntry=tk.Entry(bg="#cccccc",font=font)
+titleEntry.place(relx=0.835,rely=0.245,relheight=0.06,relwidth=0.155)
+
 def sortButtonFunc():
     sortParameters =[]
     sortGenres=selectGenres.get()
@@ -67,18 +70,24 @@ def sortButtonFunc():
     sortParameters.append(sortPublishers)
     sortAuthors = selectAuthors.get()
     sortParameters.append(sortAuthors)
-    print(sortParameters)
-    createTable(sortParameters)
+    #print(sortParameters)
+    createTable(presenter.sortedListOfStrings(sortParameters))
+
+def searchByTitle():
+    createTable(presenter.nameSortedListOfStrings(titleEntry.get()))
     #canvas.update_idletasks()
 
 sortButton=tk.Button(font=(12),text="Sort by",command=sortButtonFunc,foreground="#ff6366",bg="#cccccc")
 sortButton.place(relx=0.025,rely=0.44,relheight=0.04,relwidth=0.125)
 
+sortButton=tk.Button(font=(12),text="Search title",command=searchByTitle,foreground="#ff6366",bg="#cccccc")
+sortButton.place(relx=0.835,rely=0.32,relheight=0.06,relwidth=0.155)
+
 
         #for i in range(genres.__len__()):
          #   print(genres[i])
 
-def createTable(sortStates):
+def createTable(data):
     canvas = tk.Canvas(root)
     canvas.place(relx=0.175, rely=0.2, relheight=0.28, relwidth=0.65)
 
@@ -108,8 +117,8 @@ def createTable(sortStates):
     tv.heading('state', text='Status', anchor=CENTER)
 
     index=-1
-    bookDataSorted=presenter.sortedListOfStrings(sortStates)
-    n1=bookDataSorted.__len__()
+    bookData=data
+    n1=bookData.__len__()
 
     for i in range(n1):
                 #for j in range(7):
@@ -124,12 +133,12 @@ def createTable(sortStates):
 
     tv.pack()
 
-unsortedParameters = []
-unsortedParameters.append("genre")
-unsortedParameters.append("status")
-unsortedParameters.append("publisher")
-unsortedParameters.append("author")
-createTable(unsortedParameters)
+#unsortedParameters = []
+#unsortedParameters.append("genre")
+#unsortedParameters.append("status")
+#unsortedParameters.append("publisher")
+#unsortedParameters.append("author")
+createTable(presenter.stringOfBooks())
 
 root.mainloop()
 
