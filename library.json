@@ -34,3 +34,12 @@
   "_Book__inventoryNumber": "3533",
   "_Book__state": "borrowed5"
 }
+{
+  "_Book__title": "Amintiri din copilarie",
+  "_Book__author": "Ion Creanga",
+  "_Book__isbn": "928-008-123",
+  "_Book__genre": "Memorii",
+  "_Book__publisher": "P45",
+  "_Book__inventoryNumber": "12",
+  "_Book__state": "borrowed"
+}

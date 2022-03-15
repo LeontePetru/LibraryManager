@@ -75,6 +75,14 @@ class BookPersistence(JSONPersist):
                 return bookList[i]
         return False
 
+    def searchByNumber(self,number):
+        bookList=self.read()
+        n = bookList.__len__()
+        for i in range(n):
+            if(bookList[i].inventoryNumber==number):
+                return bookList[i]
+        return False
+
 class LoggedUserPersistance(JSONPersist):
     def __init__(self,file):
         super().__init__(file)

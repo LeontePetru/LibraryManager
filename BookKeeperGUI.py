@@ -48,7 +48,7 @@ selectStates['values'] = states
 selectStates.current(0)
 selectStates.place(relx=0.025,rely=0.38,relheight=0.04,relwidth=0.125)
 
-titleEntry=tk.Entry(bg="#cccccc",font=font)
+titleEntry=tk.Entry(bg="#cccccc",font=font,fg="#ff6366")
 titleEntry.place(relx=0.835,rely=0.245,relheight=0.06,relwidth=0.155)
 
 def sortButtonFunc():
@@ -71,6 +71,43 @@ sortButton.place(relx=0.025,rely=0.44,relheight=0.04,relwidth=0.125)
 
 sortButton=tk.Button(font=(12),text="Search title",command=searchByTitle,foreground="#ff6366",bg="#cccccc")
 sortButton.place(relx=0.835,rely=0.32,relheight=0.06,relwidth=0.155)
+
+
+canvasLabel1=tk.Canvas(root,bg="#ffffff",borderwidth=0,selectborderwidth=0)
+labelBorrow=tk.Label(master=canvasLabel1,text=" Borrow: \n \n Return:",font=(12),fg="#ff6366",bg="#ffffff",borderwidth=0)
+labelBorrow.pack()
+canvasLabel1.place(relx=0.205, rely=0.5, relheight=0.09, relwidth=0.06)
+
+canvasLabel2=tk.Canvas(root,bg="#ffffff",borderwidth=0,selectborderwidth=0)
+labelBorrow=tk.Label(master=canvasLabel2,text=" Book No#: \n \n Book No#:",font=(12),fg="#ff6366",bg="#ffffff",borderwidth=0)
+labelBorrow.pack()
+canvasLabel2.place(relx=0.28, rely=0.5, relheight=0.09, relwidth=0.07)
+
+borrowNumberEntry=tk.Entry(bg="#cccccc",font=font,fg="#ff6366")
+borrowNumberEntry.place(relx=0.365, rely=0.5, relheight=0.035, relwidth=0.11)
+
+returnNumberEntry=tk.Entry(bg="#cccccc",font=font,fg="#ff6366")
+returnNumberEntry.place(relx=0.365, rely=0.55, relheight=0.035, relwidth=0.11)
+
+canvasLabel3=tk.Canvas(root,bg="#ffffff",borderwidth=0,selectborderwidth=0)
+labelBorrow=tk.Label(master=canvasLabel3,text=" Username: \n \n Username:",font=(12),fg="#ff6366",bg="#ffffff",borderwidth=0)
+labelBorrow.pack()
+canvasLabel3.place(relx=0.485, rely=0.5, relheight=0.09, relwidth=0.08)
+
+borrowUserEntry=tk.Entry(bg="#cccccc",font=font,fg="#ff6366")
+borrowUserEntry.place(relx=0.58, rely=0.5, relheight=0.035, relwidth=0.1)
+
+returnUserEntry=tk.Entry(bg="#cccccc",font=font,fg="#ff6366")
+returnUserEntry.place(relx=0.58, rely=0.55, relheight=0.035, relwidth=0.1)
+
+def borrow():
+    presenter.borrow(borrowNumberEntry.get())
+
+sortButton=tk.Button(font=(12),text="Borrow Book",command=borrow,foreground="#ff6366",bg="#cccccc")
+sortButton.place(relx=0.7,rely=0.49,relheight=0.035,relwidth=0.1)
+
+sortButton=tk.Button(font=(12),text="Return Book",command=searchByTitle,foreground="#ff6366",bg="#cccccc")
+sortButton.place(relx=0.7,rely=0.545,relheight=0.035,relwidth=0.1)
 
 def createBookTable(data):
     canvas = tk.Canvas(root)
@@ -114,7 +151,7 @@ def createBookTable(data):
 
 def createUsersTable(usersData):
     canvas1 = tk.Canvas(root)
-    canvas1.place(relx=0.175, rely=0.5, relheight=0.28, relwidth=0.245)
+    canvas1.place(relx=0.175, rely=0.615, relheight=0.28, relwidth=0.245)
 
     tv1 = ttk.Treeview(canvas1,selectmode='browse')
     vsb1 = ttk.Scrollbar(orient="vertical", command=tv1.yview)

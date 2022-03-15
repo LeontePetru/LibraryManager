@@ -119,26 +119,12 @@ class BookPresenter:
                 sortedBookData1.append(self.__bookData[i])
 
         return sortedBookData1
-    #def ()
 
-pres=BookPresenter()
-#aux=pres.stringOfBooks()
-#n=aux.__len__()
-
-#for i in range(n):
- #   for j in range(7):
-  #      print(aux[i][j]+' ')
-   # print('\n')
+    def borrow(self,invNumber):
+        data=self.__bookInventory.bookPersistence.searchByNumber(invNumber)
+        self.__bookInventory.bookPersistence.deleteBook(data)
+        data.state="borrowed"
+        self.__bookInventory.bookPersistence.saveBook(data)
+#pres=BookPresenter()
 
 
-#print(pres.bookData)
-#print(pres.publishers)
-#print(pres.states)
-#print(pres.authors)
-#print(pres.genres)
-#a="sdsfsdSDDSDdsa"
-
-#print(a.lower())
-
-
-#print(pres.nameSortedListOfStrings('Amintiri din copilarie52'))
