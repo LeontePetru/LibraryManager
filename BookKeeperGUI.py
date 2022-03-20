@@ -110,12 +110,100 @@ def returnBook():
     presenter.__init__()
     sortButtonFunc()
 
+def deleteBook():
+    presenter.deleteBook(DeleteGetEntry.get())
+    presenter.__init__()
+    sortButtonFunc()
+
+def getBook():
+    book=presenter.getBook(DeleteGetEntry.get())
+    TitleEntry2.delete(0,"end")
+    TitleEntry2.insert(0,book.title)
+    AuthorEntry.delete(0, "end")
+    AuthorEntry.insert(0, book.author)
+    ISBNEntry.delete(0, "end")
+    ISBNEntry.insert(0, book.isbn)
+    GenreEntry.delete(0, "end")
+    GenreEntry.insert(0, book.genre)
+    PublisherEntry.delete(0, "end")
+    PublisherEntry.insert(0, book.publisher)
+    InvNoEntry.delete(0, "end")
+    InvNoEntry.insert(0, book.inventoryNumber)
+    StatusEntry.delete(0, "end")
+    StatusEntry.insert(0, book.state)
+
+def insertUpdate():
+    presenter.insertUpdate(TitleEntry2.get(),AuthorEntry.get(),ISBNEntry.get(),GenreEntry.get(),
+                           PublisherEntry.get(),InvNoEntry.get(),StatusEntry.get())
+    presenter.__init__()
+    sortButtonFunc()
+
+
 
 borrowButton=tk.Button(font=(12),text="Borrow Book",command=borrow,foreground="#ff6366",bg="#cccccc")
 borrowButton.place(relx=0.7,rely=0.49,relheight=0.035,relwidth=0.1)
 
 returnButton=tk.Button(font=(12),text="Return Book",command=returnBook,foreground="#ff6366",bg="#cccccc")
 returnButton.place(relx=0.7,rely=0.545,relheight=0.035,relwidth=0.1)
+
+deleteBookButton=tk.Button(font=(12),text="Delete Book",command=deleteBook,foreground="#ff6366",bg="#cccccc")
+deleteBookButton.place(relx=0.43,rely=0.615,relheight=0.035,relwidth=0.095)
+
+canvasLabel3=tk.Canvas(root,bg="#ffffff",borderwidth=0,selectborderwidth=0)
+labelDelete=tk.Label(master=canvasLabel3,text="No#:",font=(12),fg="#ff6366",bg="#ffffff",borderwidth=0)
+labelDelete.pack()
+canvasLabel3.place(relx=0.535, rely=0.617, relheight=0.03, relwidth=0.03)
+
+DeleteGetEntry=tk.Entry(bg="#cccccc",font=font,fg="#ff6366")
+DeleteGetEntry.place(relx=0.58, rely=0.615, relheight=0.035, relwidth=0.1)
+
+GetButton=tk.Button(font=(12),text="Get Book",command=getBook,foreground="#ff6366",bg="#cccccc")
+GetButton.place(relx=0.7,rely=0.615,relheight=0.035,relwidth=0.1)
+
+canvasLabel4=tk.Canvas(root,bg="#ffffff",borderwidth=0,selectborderwidth=0)
+labelDelete=tk.Label(master=canvasLabel4,text="Title:                    Author:                 ISBN:",font=(12),fg="#ff6366",bg="#ffffff",borderwidth=0)
+labelDelete.pack()
+canvasLabel4.place(relx=0.46, rely=0.655, relheight=0.03, relwidth=0.32)
+
+TitleEntry2=tk.Entry(bg="#cccccc",font=font,fg="#ff6366")
+TitleEntry2.place(relx=0.43, rely=0.685, relheight=0.035, relwidth=0.13)
+
+AuthorEntry=tk.Entry(bg="#cccccc",font=font,fg="#ff6366")
+AuthorEntry.place(relx=0.57, rely=0.685, relheight=0.035, relwidth=0.11)
+
+ISBNEntry=tk.Entry(bg="#cccccc",font=font,fg="#ff6366")
+ISBNEntry.place(relx=0.69, rely=0.685, relheight=0.035, relwidth=0.11)
+
+canvasLabel5=tk.Canvas(root,bg="#ffffff",borderwidth=0,selectborderwidth=0)
+labelDelete=tk.Label(master=canvasLabel5,text="  Genre:         Publisher:        InvNo#         Status:",font=(12),fg="#ff6366",bg="#ffffff",borderwidth=0)
+labelDelete.pack()
+canvasLabel5.place(relx=0.44, rely=0.725, relheight=0.03, relwidth=0.34)
+
+GenreEntry=tk.Entry(bg="#cccccc",font=font,fg="#ff6366")
+GenreEntry.place(relx=0.43, rely=0.76, relheight=0.035, relwidth=0.09)
+
+PublisherEntry=tk.Entry(bg="#cccccc",font=font,fg="#ff6366")
+PublisherEntry.place(relx=0.53, rely=0.76, relheight=0.035, relwidth=0.09)
+
+InvNoEntry=tk.Entry(bg="#cccccc",font=font,fg="#ff6366")
+InvNoEntry.place(relx=0.63, rely=0.76, relheight=0.035, relwidth=0.08)
+
+StatusEntry=tk.Entry(bg="#cccccc",font=font,fg="#ff6366")
+StatusEntry.place(relx=0.72, rely=0.76, relheight=0.035, relwidth=0.08)
+
+InsertUpdateButton=tk.Button(font=(12),text="Insert Book / Update Book",command=insertUpdate,foreground="#ff6366",bg="#cccccc")
+InsertUpdateButton.place(relx=0.5,rely=0.81,relheight=0.035,relwidth=0.22)
+
+canvasLabel6=tk.Canvas(root,bg="#ffffff",borderwidth=0,selectborderwidth=0)
+canvasLabel6.place(relx=0.41, rely=0.6, relheight=0.25, relwidth=0.003)
+canvasLabel7=tk.Canvas(root,bg="#ffffff",borderwidth=0,selectborderwidth=0)
+canvasLabel7.place(relx=0.4097, rely=0.6, relheight=0.25, relwidth=0.003)
+
+DeleteUserButton=tk.Button(font=(12),text="Delete User",command=getBook,foreground="#ff6366",bg="#cccccc")
+DeleteUserButton.place(relx=0.18,rely=0.615,relheight=0.035,relwidth=0.1)
+
+GetUserButton=tk.Button(font=(12),text="Get User",command=getBook,foreground="#ff6366",bg="#cccccc")
+GetUserButton.place(relx=0.3,rely=0.615,relheight=0.035,relwidth=0.1)
 
 def createBookTable(data):
     canvas = tk.Canvas(root)
@@ -159,7 +247,7 @@ def createBookTable(data):
 
 def createUsersTable(usersData):
     canvas1 = tk.Canvas(root)
-    canvas1.place(relx=0.175, rely=0.615, relheight=0.28, relwidth=0.245)
+    canvas1.place(relx=0.015, rely=0.615, relheight=0.23, relwidth=0.15)
 
     tv1 = ttk.Treeview(canvas1,selectmode='browse')
     vsb1 = ttk.Scrollbar(orient="vertical", command=tv1.yview)
@@ -168,11 +256,11 @@ def createUsersTable(usersData):
     tv1['columns']=('number', 'username', 'role',)
 
     tv1.column('#0',width=0)
-    tv1.column('number', anchor=CENTER, width=30)
-    tv1.column('username', anchor=CENTER,width=140)
-    tv1.column('role', anchor=CENTER,width=140)
+    tv1.column('number', anchor=CENTER, width=15)
+    tv1.column('username', anchor=CENTER,width=100)
+    tv1.column('role', anchor=CENTER,width=75)
 
-    tv1.heading('number', text='No#', anchor=CENTER)
+    tv1.heading('number', text='N.', anchor=CENTER)
     tv1.heading('username', text='Username', anchor=CENTER)
     tv1.heading('role', text='Type', anchor=CENTER)
 

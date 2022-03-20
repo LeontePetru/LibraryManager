@@ -1,5 +1,5 @@
 
-from BooksInventory import BooksInventory
+from BooksInventory import BooksInventory,Book
 from JSONPersistence import BookPersistence
 
 
@@ -132,7 +132,18 @@ class BookPresenter:
         self.__bookInventory.bookPersistence.deleteBook(invNumber)
         data.state = "available"
         self.__bookInventory.bookPersistence.saveBook(data)
-        #self.__bookInventory.bookPersistence=BookPersistence("library.json");
-#pres=BookPresenter()
+
+    def deleteBook(self, invNumber):
+        self.__bookInventory.bookPersistence.deleteBook(invNumber)
+
+    def getBook(self, invNumber):
+        data = self.__bookInventory.bookPersistence.searchByNumber(invNumber)
+        return data
+
+    def insertUpdate(self,title,author,isbn,genre,publisher,invNumber,status):
+        book1=Book(title,author,isbn,genre,publisher,invNumber,status)
+        self.__bookInventory.bookPersistence.deleteBook(invNumber)
+        self.__bookInventory.bookPersistence.saveBook(book1)
+
 
 
