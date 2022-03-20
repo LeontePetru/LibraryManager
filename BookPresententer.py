@@ -1,5 +1,6 @@
 
 from BooksInventory import BooksInventory
+from JSONPersistence import BookPersistence
 
 
 class BookPresenter:
@@ -122,9 +123,16 @@ class BookPresenter:
 
     def borrow(self,invNumber):
         data=self.__bookInventory.bookPersistence.searchByNumber(invNumber)
-        self.__bookInventory.bookPersistence.deleteBook(data)
+        self.__bookInventory.bookPersistence.deleteBook(invNumber)
         data.state="borrowed"
         self.__bookInventory.bookPersistence.saveBook(data)
+
+    def returnBook(self, invNumber):
+        data = self.__bookInventory.bookPersistence.searchByNumber(invNumber)
+        self.__bookInventory.bookPersistence.deleteBook(invNumber)
+        data.state = "available"
+        self.__bookInventory.bookPersistence.saveBook(data)
+        #self.__bookInventory.bookPersistence=BookPersistence("library.json");
 #pres=BookPresenter()
 
 

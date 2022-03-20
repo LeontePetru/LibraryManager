@@ -101,7 +101,7 @@ class LoggedUserPersistance(JSONPersist):
 
         return userList
 
-    def deleteBook(self, username):
+    def deleteUser(self, username):
         userList = self.read()
         newUserList = []
         n = userList.__len__()

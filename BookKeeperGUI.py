@@ -102,12 +102,20 @@ returnUserEntry.place(relx=0.58, rely=0.55, relheight=0.035, relwidth=0.1)
 
 def borrow():
     presenter.borrow(borrowNumberEntry.get())
+    presenter.__init__()
+    sortButtonFunc()
 
-sortButton=tk.Button(font=(12),text="Borrow Book",command=borrow,foreground="#ff6366",bg="#cccccc")
-sortButton.place(relx=0.7,rely=0.49,relheight=0.035,relwidth=0.1)
+def returnBook():
+    presenter.returnBook(returnNumberEntry.get())
+    presenter.__init__()
+    sortButtonFunc()
 
-sortButton=tk.Button(font=(12),text="Return Book",command=searchByTitle,foreground="#ff6366",bg="#cccccc")
-sortButton.place(relx=0.7,rely=0.545,relheight=0.035,relwidth=0.1)
+
+borrowButton=tk.Button(font=(12),text="Borrow Book",command=borrow,foreground="#ff6366",bg="#cccccc")
+borrowButton.place(relx=0.7,rely=0.49,relheight=0.035,relwidth=0.1)
+
+returnButton=tk.Button(font=(12),text="Return Book",command=returnBook,foreground="#ff6366",bg="#cccccc")
+returnButton.place(relx=0.7,rely=0.545,relheight=0.035,relwidth=0.1)
 
 def createBookTable(data):
     canvas = tk.Canvas(root)
