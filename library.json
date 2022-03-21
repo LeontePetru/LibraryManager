@@ -16,3 +16,12 @@
   "_Book__inventoryNumber": "2",
   "_Book__state": "available"
 }
+{
+  "_Book__title": "",
+  "_Book__author": "",
+  "_Book__isbn": "",
+  "_Book__genre": "",
+  "_Book__publisher": "",
+  "_Book__inventoryNumber": "",
+  "_Book__state": ""
+}

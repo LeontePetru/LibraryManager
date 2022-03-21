@@ -119,7 +119,10 @@ class LoggedUserPersistance(JSONPersist):
                 return userList[i]
         return False
 
-
+    def insertUser(self,user):
+        userList=self.read()
+        userList.append(user)
+        self.serializeList(userList)
 
 
 

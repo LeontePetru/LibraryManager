@@ -1,4 +1,5 @@
 from JSONPersistence import LoggedUserPersistance
+from Users import LoggedUser
 
 class UserPresenter:
 
@@ -14,6 +15,14 @@ class UserPresenter:
     def states(self, users):
         self.__users = users
 
+    @property
+    def usersPers(self):
+        return self.__userPersistance
+
+    @usersPers.setter
+    def states(self, userPersistance):
+        self.__userPersistance = userPersistance
+
     def stringOfUsers(self):
         listOfString= []
         users=self.users
@@ -28,3 +37,22 @@ class UserPresenter:
             listOfString.append(stringGen)
 
         return listOfString
+
+    def searchByUsername(self,username):
+        users = self.users
+        n = users.__len__()
+
+        for i in range(n):
+            if (users[i].username==username):
+                return users[i]
+        return False
+
+    def deleteByUsername(self,username):
+        pers=self.usersPers
+        pers.deleteUser(username)
+
+    def insertUpdateUser(self,username,password,role):
+        user1=LoggedUser(username,password,role)
+        self.deleteByUsername(username)
+        pers=self.usersPers
+        pers.insertUser(user1)

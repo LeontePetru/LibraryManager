@@ -138,6 +138,20 @@ def insertUpdate():
     presenter.__init__()
     sortButtonFunc()
 
+def getUser():
+    user1=userPresenter.searchByUsername(UsernameEntry.get())
+    RoleEntry.delete(0,"end")
+    RoleEntry.insert(0,user1.role)
+
+def deleteUser():
+    userPresenter.deleteByUsername(UsernameEntry.get())
+    userPresenter.__init__()
+    createUsersTable(userPresenter.stringOfUsers())
+
+def insertUpdateUser():
+    userPresenter.insertUpdateUser(UsernameEntry.get(),PasswordEntry.get(),RoleEntry.get())
+    userPresenter.__init__()
+    createUsersTable(userPresenter.stringOfUsers())
 
 
 borrowButton=tk.Button(font=(12),text="Borrow Book",command=borrow,foreground="#ff6366",bg="#cccccc")
@@ -199,11 +213,38 @@ canvasLabel6.place(relx=0.41, rely=0.6, relheight=0.25, relwidth=0.003)
 canvasLabel7=tk.Canvas(root,bg="#ffffff",borderwidth=0,selectborderwidth=0)
 canvasLabel7.place(relx=0.4097, rely=0.6, relheight=0.25, relwidth=0.003)
 
-DeleteUserButton=tk.Button(font=(12),text="Delete User",command=getBook,foreground="#ff6366",bg="#cccccc")
+DeleteUserButton=tk.Button(font=(12),text="Delete User",command=deleteUser,foreground="#ff6366",bg="#cccccc")
 DeleteUserButton.place(relx=0.18,rely=0.615,relheight=0.035,relwidth=0.1)
 
-GetUserButton=tk.Button(font=(12),text="Get User",command=getBook,foreground="#ff6366",bg="#cccccc")
+GetUserButton=tk.Button(font=(12),text="Get User",command=getUser,foreground="#ff6366",bg="#cccccc")
 GetUserButton.place(relx=0.3,rely=0.615,relheight=0.035,relwidth=0.1)
+
+canvasLabel8=tk.Canvas(root,bg="#ffffff",borderwidth=0,selectborderwidth=0)
+labelDelete=tk.Label(master=canvasLabel8,text="   Username: ",font=(12),fg="#ff6366",bg="#ffffff",borderwidth=0)
+labelDelete.pack()
+canvasLabel8.place(relx=0.175, rely=0.68, relheight=0.03, relwidth=0.1)
+
+UsernameEntry=tk.Entry(bg="#cccccc",font=font,fg="#ff6366")
+UsernameEntry.place(relx=0.3, rely=0.68, relheight=0.035, relwidth=0.1)
+
+canvasLabel9=tk.Canvas(root,bg="#ffffff",borderwidth=0,selectborderwidth=0)
+labelDelete=tk.Label(master=canvasLabel9,text="   Password: ",font=(12),fg="#ff6366",bg="#ffffff",borderwidth=0)
+labelDelete.pack()
+canvasLabel9.place(relx=0.175, rely=0.72, relheight=0.03, relwidth=0.1)
+
+canvasLabel10=tk.Canvas(root,bg="#ffffff",borderwidth=0,selectborderwidth=0)
+labelDelete=tk.Label(master=canvasLabel10,text="   Role: ",font=(12),fg="#ff6366",bg="#ffffff",borderwidth=0)
+labelDelete.pack()
+canvasLabel10.place(relx=0.175, rely=0.76, relheight=0.03, relwidth=0.1)
+
+PasswordEntry=tk.Entry(bg="#cccccc",font=font,fg="#ff6366",show="*")
+PasswordEntry.place(relx=0.3, rely=0.72, relheight=0.035, relwidth=0.1)
+
+RoleEntry=tk.Entry(bg="#cccccc",font=font,fg="#ff6366")
+RoleEntry.place(relx=0.3, rely=0.76, relheight=0.035, relwidth=0.1)
+
+InsertUpdateButton=tk.Button(font=(12),text="Insert User / Update User",command=insertUpdateUser,foreground="#ff6366",bg="#cccccc")
+InsertUpdateButton.place(relx=0.2,rely=0.81,relheight=0.035,relwidth=0.18)
 
 def createBookTable(data):
     canvas = tk.Canvas(root)
