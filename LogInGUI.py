@@ -28,9 +28,12 @@ def buttonLogInFunc():
     result=userPers.searchByUsername(userEntry.get())
     if (result==False or result.password != passwordEntry.get()):
         mb.showerror("LogIn","Wrong username password combination")
-    elif (result.role=="book keeper"):
+    elif (result.role=="keeper"):
         root.quit()
-        os.system('BookKeeperGUI.py')
+        os.system('BookKeeperGUI.py -k')
+    elif (result.role=="admin"):
+        root.quit()
+        os.system('BookKeeperGUI.py -a')
 
 
 

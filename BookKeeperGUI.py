@@ -1,3 +1,4 @@
+import sys
 import tkinter as tk
 from tkinter import ttk, CENTER
 from tkinter.messagebox import showinfo
@@ -5,12 +6,16 @@ from BookPresententer import BookPresenter
 from JSONPersistence import LoggedUserPersistance
 import tkinter.font as tkFont
 from UsersPresenter import UserPresenter
+from tkinter import messagebox as mb
 
 root = tk.Tk()
 root.geometry('1280x720')
 background_image = tk.PhotoImage(file='.\Images\BookInventoryGUI.png')
 background_label = tk.Label(root, image=background_image)
 background_label.place(relwidth=1,relheight=1)
+
+role=sys.argv[1]
+getRole="user"
 
 
 presenter= BookPresenter()
@@ -144,6 +149,12 @@ def getUser():
     RoleEntry.insert(0,user1.role)
 
 def deleteUser():
+    user1=userPresenter.searchByUsername(UsernameEntry.get())
+    if  user1 != False:
+        if (user1.role=="keeper" or user1.role=="admin") and role=="-k":
+            mb.showerror("Error", "Can not change an admin or a bookeeper")
+            return
+
     userPresenter.deleteByUsername(UsernameEntry.get())
     userPresenter.__init__()
     createUsersTable(userPresenter.stringOfUsers())
